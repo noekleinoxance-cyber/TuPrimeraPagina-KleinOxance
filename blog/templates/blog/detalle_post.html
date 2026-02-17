@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.titulo }}{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="row">
+      <div>
+        <h2 style="margin:0">{{ post.titulo }}</h2>
+        <div class="meta">
+          {{ post.autor.nombre }} • {{ post.fecha_publicacion|date:"d/m/Y H:i" }}
+          {% if post.categoria %} • {{ post.categoria }}{% endif %}
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="{% url 'editar_post' post.id %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'borrar_post' post.id %}">Borrar</a>
+        <a class="btn" href="{% url 'listar_posts' %}">Volver</a>
+      </div>
+    </div>
+
+    {% if post.subtitulo %}<p><strong>{{ post.subtitulo }}</strong></p>{% endif %}
+    <hr>
+    <p style="white-space:pre-wrap">{{ post.contenido }}</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Comentarios</h3>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-ok" type="submit">Comentar</button>
+    </form>
+
+    <hr>
+
+    {% if comentarios %}
+      {% for c in comentarios %}
+        <div class="card" style="background:#071226">
+          <div class="row">
+            <strong>{{ c.nombre }}</strong>
+            <span class="meta">{{ c.fecha|date:"d/m/Y H:i" }}</span>
+          </div>
+          <p style="white-space:pre-wrap">{{ c.texto }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Todavía no hay comentarios.</p>
+    {% endif %}
+  </div>
+{% endblock %}

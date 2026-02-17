@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+{% block title %}Borrar Post{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <h2 style="margin-top:0">¿Borrar este post?</h2>
+    <p>Se borra el post y también sus comentarios.</p>
+
+    <div class="card" style="background:#071226">
+      <strong>{{ post.titulo }}</strong>
+      <div class="meta">{{ post.autor.nombre }} • {{ post.fecha_publicacion|date:"d/m/Y H:i" }}</div>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-danger" type="submit">Sí, borrar</button>
+        <a class="btn" href="{% url 'detalle_post' post.id %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

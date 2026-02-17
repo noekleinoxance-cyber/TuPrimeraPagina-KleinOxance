@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% block title %}Buscar{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <h2 style="margin-top:0">Buscar posts</h2>
+    <form method="get">
+      {{ form.as_p }}
+      <button class="btn btn-ok" type="submit">Buscar</button>
+    </form>
+  </div>
+
+  {% if posts %}
+    <div class="card">
+      <h3 style="margin-top:0">Resultados</h3>
+      <ul>
+        {% for post in posts %}
+          <li class="title">
+            <a href="{% url 'detalle_post' post.id %}">{{ post.titulo }}</a>
+            <span class="meta"> — {{ post.autor.nombre }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elif request.GET %}
+    <div class="card"><p>No se encontraron resultados.</p></div>
+  {% endif %}
+{% endblock %}
