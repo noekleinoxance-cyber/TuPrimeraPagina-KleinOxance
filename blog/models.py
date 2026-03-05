@@ -52,7 +52,10 @@ class Post(models.Model):
         choices=PRIORIDAD_CHOICES,
         default="media"
     )
-
+    class Meta:
+        verbose_name = "Ticket"
+        verbose_name_plural = "Tickets"
+        
     def __str__(self):
         return self.titulo
 
