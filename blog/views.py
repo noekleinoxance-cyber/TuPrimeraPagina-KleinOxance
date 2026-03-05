@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
+
 from .forms import AutorForm, CategoriaForm, PostForm, BuscarPostForm, ComentarioForm
 from .models import Post
 
@@ -88,3 +90,17 @@ def buscar_post(request):
             posts = Post.objects.filter(titulo__icontains=titulo).order_by("-fecha_publicacion")
 
     return render(request, "blog/buscar_post.html", {"form": form, "posts": posts})
+
+def register(request):
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, "registration/register.html", {"form": form})

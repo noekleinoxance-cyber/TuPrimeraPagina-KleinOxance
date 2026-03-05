@@ -15,4 +15,5 @@ urlpatterns = [
     path("posts/<int:post_id>/borrar/", views.borrar_post, name="borrar_post"),
 
     path("buscar/", views.buscar_post, name="buscar_post"),
+    path("accounts/register/", views.register, name="register"),
 ]

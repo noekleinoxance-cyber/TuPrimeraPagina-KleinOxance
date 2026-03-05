@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Crear cuenta</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn">Registrarse</button>
+    </form>
+
+</div>
+
+{% endblock %}
