@@ -117,4 +117,4 @@ Proyecto desarrollado como trabajo práctico para aprender:
 
 ## 👨‍💻 Autor
 
-Noé Klein
+Noé Klein Oxance
