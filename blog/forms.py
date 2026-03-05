@@ -1,28 +1,36 @@
 from django import forms
-from .models import Autor, Categoria, Post, Comentario
+from .models import Categoria, Post, Comentario
 
-class AutorForm(forms.ModelForm):
-    class Meta:
-        model = Autor
-        fields = ["nombre", "email"]
 
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields = ["nombre"]
 
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["titulo", "subtitulo", "contenido", "autor", "categoria","estado","prioridad"]
+        fields = [
+            "titulo",
+            "subtitulo",
+            "contenido",
+            "categoria",
+            "estado",
+            "prioridad",
+        ]
+
 
 class BuscarPostForm(forms.Form):
     titulo = forms.CharField(
         max_length=100,
         required=False,
         label="Buscar por título",
-        widget=forms.TextInput(attrs={"placeholder": "ej: outlook, impresora, vnc, ssd..."}),
+        widget=forms.TextInput(
+            attrs={"placeholder": "ej: outlook, impresora, vnc, ssd..."}
+        ),
     )
+
 
 class ComentarioForm(forms.ModelForm):
     class Meta:

@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
-{% block title %}Posts - Bitácora IT{% endblock %}
+{% block title %}Tickets - Mesa de Ayuda IT{% endblock %}
 
 {% block content %}
   <div class="card">
     <div class="row">
-      <h2 style="margin:0">Posts</h2>
-      <a class="btn btn-ok" href="{% url 'crear_post' %}">Nuevo Post</a>
+      <h2 style="margin:0">Tickets</h2>
+      <a class="btn btn-ok" href="{% url 'crear_post' %}">Nuevo Ticket</a>
     </div>
     <p>Entrá al detalle para comentar / editar / borrar.</p>
   </div>
@@ -18,15 +18,22 @@
             <div class="title" style="font-size:18px">
               <a href="{% url 'detalle_post' post.id %}">{{ post.titulo }}</a>
             </div>
+
             <div class="meta">
-              {{ post.autor.nombre }} • {{ post.fecha_publicacion|date:"d/m/Y H:i" }}
+              Reportado por: {{ post.reportado_por.username }} • {{ post.fecha_publicacion|date:"d/m/Y H:i" }}
               {% if post.categoria %} • {{ post.categoria }}{% endif %}
             </div>
+
             <div class="meta">
-            Estado: <strong>{{ post.estado }}</strong> • Prioridad: <strong style="color:#ff5a5a">{{ post.prioridad }}</strong>
+              Estado: <strong>{{ post.estado }}</strong> • 
+              Prioridad: <strong style="color:#ff5a5a">{{ post.prioridad }}</strong>
             </div>
-            {% if post.subtitulo %}<p>{{ post.subtitulo }}</p>{% endif %}
+
+            {% if post.subtitulo %}
+              <p>{{ post.subtitulo }}</p>
+            {% endif %}
           </div>
+
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <a class="btn" href="{% url 'editar_post' post.id %}">Editar</a>
             <a class="btn btn-danger" href="{% url 'borrar_post' post.id %}">Borrar</a>
@@ -35,6 +42,8 @@
       </div>
     {% endfor %}
   {% else %}
-    <div class="card"><p>No hay posts todavía.</p></div>
+    <div class="card">
+      <p>No hay tickets todavía.</p>
+    </div>
   {% endif %}
 {% endblock %}

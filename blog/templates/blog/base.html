@@ -1,162 +1,296 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% block title %}Bitácora IT{% endblock %}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{% block title %}Mesa de Ayuda IT{% endblock %}</title>
 
-  <style>
-    :root{
-      --bg:#0b1220;
-      --card:#0f1b33;
-      --line:#22324f;
-      --text:#e7eefc;
-      --muted:#a9b7d6;
-      --accent:#60a5fa;
-      --ok:#22c55e;
-      --danger:#ef4444;
-    }
+<style>
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--text);
-    }
+:root{
+--bg:#0b1220;
+--card:#0f1b33;
+--line:#22324f;
+--text:#e7eefc;
+--muted:#a9b7d6;
+--accent:#60a5fa;
+--ok:#22c55e;
+--danger:#ef4444;
+}
 
-    .wrap{max-width:980px;margin:0 auto;padding:18px}
+*{box-sizing:border-box}
 
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:10px 12px;
-    }
+body{
+margin:0;
+font-family:system-ui,Segoe UI,Roboto,Arial;
+background:var(--bg);
+color:var(--text);
+}
 
-    .brand{ font-weight:900;
-  font-size:22px;
-  letter-spacing:0.8px;
-  color:var(--accent);}
+.wrap{
+max-width:980px;
+margin:auto;
+padding:18px;
+}
 
-    .nav a{
-      text-decoration:none;
-      padding:7px 10px;
-      border-radius:10px;
-      border:1px solid transparent;
-      color:var(--text);
-    }
+.header{
+text-align:center;
+margin-bottom:20px;
+}
 
-    .nav a:hover{border-color:var(--line)}
+.header h1{
+margin:0;
+font-size:34px;
+font-weight:900;
+color:var(--accent);
+}
 
-    .pill{
-      margin-left:auto;
-      font-size:12px;
-      color:var(--muted);
-    }
+.header p{
+margin:4px 0 0 0;
+color:var(--muted);
+font-size:14px;
+}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      margin:12px 0;
-    }
+.nav{
+display:flex;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+background:var(--card);
+border:1px solid var(--line);
+border-radius:14px;
+padding:10px 12px;
+}
 
-    .row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+.nav a{
+text-decoration:none;
+padding:7px 10px;
+border-radius:10px;
+border:1px solid transparent;
+color:var(--text);
+}
 
-    h1,h2,h3{margin:0 0 10px 0}
+.nav a:hover{
+border-color:var(--line);
+}
 
-    p{
-      margin:10px 0;
-      color:var(--muted);
-      line-height:1.5;
-    }
+.nav-right{
+margin-left:auto;
+display:flex;
+align-items:center;
+gap:10px;
+}
 
-    .meta{font-size:12px;color:var(--muted)}
+.user{
+font-size:13px;
+color:var(--muted);
+padding:4px 8px;
+border-radius:8px;
+border:1px solid var(--line);
+}
 
-    hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+.btn-logout{
+padding:6px 10px;
+border-radius:10px;
+border:1px solid rgba(239,68,68,.6);
+background:transparent;
+color:#ff6b6b;
+cursor:pointer;
+}
 
-    input,select,textarea{
-      width:100%;
-      max-width:760px;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:#071226;
-      color:var(--text);
-      outline:none;
-    }
+.btn-logout:hover{
+background:rgba(239,68,68,.15);
+}
 
-    textarea{min-height:140px}
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:14px;
+margin:12px 0;
+}
 
-    button, .btn{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:transparent;
-      color:var(--text);
-      cursor:pointer;
-      text-decoration:none;
-    }
+.row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+}
 
-    .btn:hover, button:hover{border-color:var(--accent)}
-    .btn-ok{border-color:rgba(34,197,94,.55)}
-    .btn-danger{border-color:rgba(239,68,68,.55)}
+h1,h2,h3{
+margin:0 0 10px 0
+}
 
-    .title a{
-      text-decoration:none;
-      font-weight:800;
-      color:var(--text);
-    }
-    .title a:hover{color:var(--accent)}
-  </style>
+p{
+margin:10px 0;
+color:var(--muted);
+line-height:1.5;
+}
+
+.meta{
+font-size:12px;
+color:var(--muted)
+}
+
+hr{
+border:0;
+border-top:1px solid var(--line);
+margin:14px 0
+}
+
+input,select,textarea{
+width:100%;
+max-width:760px;
+padding:10px 12px;
+border-radius:12px;
+border:1px solid var(--line);
+background:#071226;
+color:var(--text);
+outline:none;
+}
+
+textarea{
+min-height:140px
+}
+
+button,.btn{
+display:inline-block;
+padding:8px 12px;
+border-radius:12px;
+border:1px solid var(--line);
+background:transparent;
+color:var(--text);
+cursor:pointer;
+text-decoration:none;
+}
+
+.btn:hover,button:hover{
+border-color:var(--accent)
+}
+
+.btn-ok{
+border-color:rgba(34,197,94,.55)
+}
+
+.btn-danger{
+border-color:rgba(239,68,68,.55)
+}
+
+.title a{
+text-decoration:none;
+font-weight:800;
+color:var(--text);
+}
+
+.title a:hover{
+color:var(--accent)
+}
+
+/* BADGES */
+
+.badge{
+padding:3px 8px;
+border-radius:8px;
+font-size:11px;
+font-weight:600;
+border:1px solid transparent;
+}
+
+.badge-abierto{
+background:#14391f;
+border-color:#22c55e;
+color:#9af7b8;
+}
+
+.badge-proceso{
+background:#3a2f11;
+border-color:#facc15;
+color:#fde68a;
+}
+
+.badge-resuelto{
+background:#122c44;
+border-color:#60a5fa;
+color:#93c5fd;
+}
+
+.badge-baja{
+background:#1e3a2a;
+border-color:#22c55e;
+color:#86efac;
+}
+
+.badge-media{
+background:#3a2f11;
+border-color:#facc15;
+color:#fde68a;
+}
+
+.badge-alta{
+background:#3b1f1f;
+border-color:#ef4444;
+color:#fca5a5;
+}
+
+.badge-critica{
+background:#3b0000;
+border-color:#ef4444;
+color:#ff6b6b;
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">Mesa de Ayuda IT</div>
+<div class="wrap">
 
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'about' %}">About</a>
+<div class="header">
+<h1>Mesa de Ayuda IT</h1>
+<p>Sistema interno de soporte técnico</p>
+</div>
 
-    {% if user.is_authenticated %}
-      
-      <a href="{% url 'listar_posts' %}">Posts</a>
-      <a href="{% url 'buscar_post' %}">Buscar</a>
-      <a href="{% url 'crear_post' %}">Nuevo</a>
-      <a href="{% url 'crear_autor' %}">Autor</a>
-      <a href="{% url 'crear_categoria' %}">Categoría</a>
-      
+<div class="nav">
 
-      
-      <form action="{% url 'logout' %}" method="POST" style="display:inline;">
-          {% csrf_token %}
-          <button class="btn">Logout</button>
-      </form>
 
-      {% else %}
+{% if user.is_authenticated %}
 
-          <a href="{% url 'login' %}">Login</a>
-          <a href="{% url 'register' %}">Register</a>
-      
-    {% endif %}
-    </div>
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'listar_posts' %}">Tickets</a>
+<a href="{% url 'buscar_post' %}">Buscar</a>
+<a href="{% url 'crear_post' %}">Nuevo Ticket</a>
+<a href="{% url 'crear_categoria' %}">Tipo Incidente</a>
 
-    {% block content %}{% endblock %}
-  </div>
+<a href="{% url 'about' %}">About</a>
+
+<div class="nav-right">
+
+<div class="user">
+👤 {{ user.username }}
+</div>
+
+<form action="{% url 'logout' %}" method="POST">
+{% csrf_token %}
+<button class="btn-logout">Cerrar sesión</button>
+</form>
+
+</div>
+
+{% else %}
+
+<div class="nav-right">
+<a href="{% url 'login' %}">Iniciar sesión</a>
+<a href="{% url 'register' %}">Registrarse</a>
+</div>
+
+{% endif %}
+
+</div>
+
+{% block content %}{% endblock %}
+
+</div>
 
 </body>
 </html>

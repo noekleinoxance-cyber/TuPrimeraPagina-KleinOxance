@@ -1,9 +1,10 @@
 {% extends "blog/base.html" %}
-{% block title %}Buscar{% endblock %}
+{% block title %}Buscar Tickets{% endblock %}
 
 {% block content %}
   <div class="card">
-    <h2 style="margin-top:0">Buscar posts</h2>
+    <h2 style="margin-top:0">Buscar tickets</h2>
+
     <form method="get">
       {{ form.as_p }}
       <button class="btn btn-ok" type="submit">Buscar</button>
@@ -13,16 +14,28 @@
   {% if posts %}
     <div class="card">
       <h3 style="margin-top:0">Resultados</h3>
+
       <ul>
         {% for post in posts %}
           <li class="title">
-            <a href="{% url 'detalle_post' post.id %}">{{ post.titulo }}</a>
-            <span class="meta"> — {{ post.autor.nombre }}</span>
+            <a href="{% url 'detalle_post' post.id %}">
+              {{ post.titulo }}
+            </a>
+
+            <span class="meta">
+              — {{ post.reportado_por.username }}
+              • {{ post.fecha_publicacion|date:"d/m/Y H:i" }}
+              {% if post.categoria %} • {{ post.categoria }}{% endif %}
+            </span>
           </li>
         {% endfor %}
       </ul>
+
     </div>
+
   {% elif request.GET %}
-    <div class="card"><p>No se encontraron resultados.</p></div>
+    <div class="card">
+      <p>No se encontraron tickets.</p>
+    </div>
   {% endif %}
 {% endblock %}
