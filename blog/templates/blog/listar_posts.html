@@ -22,6 +22,9 @@
               {{ post.autor.nombre }} • {{ post.fecha_publicacion|date:"d/m/Y H:i" }}
               {% if post.categoria %} • {{ post.categoria }}{% endif %}
             </div>
+            <div class="meta">
+            Estado: <strong>{{ post.estado }}</strong> • Prioridad: <strong style="color:#ff5a5a">{{ post.prioridad }}</strong>
+            </div>
             {% if post.subtitulo %}<p>{{ post.subtitulo }}</p>{% endif %}
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">

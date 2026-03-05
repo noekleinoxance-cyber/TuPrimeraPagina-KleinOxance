@@ -14,7 +14,7 @@ class CategoriaForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["titulo", "subtitulo", "contenido", "autor", "categoria"]
+        fields = ["titulo", "subtitulo", "contenido", "autor", "categoria","estado","prioridad"]
 
 class BuscarPostForm(forms.Form):
     titulo = forms.CharField(
