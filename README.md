@@ -118,3 +118,6 @@ Proyecto desarrollado como trabajo práctico para aprender:
 ## 👨‍💻 Autor
 
 Noé Klein Oxance
+
+🎥 Video demostración:
+https://drive.google.com/file/d/1i6adgxvTltBw9i2bLMZNJ1MXq0NAx-2F/view?usp=sharing
